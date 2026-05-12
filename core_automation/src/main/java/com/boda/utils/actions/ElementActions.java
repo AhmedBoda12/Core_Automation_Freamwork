@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import com.boda.utils.WaitManager;
+import com.boda.utils.logs.LogsManager;
 
 public class ElementActions {
     private final WebDriver driver;
@@ -25,6 +26,7 @@ public class ElementActions {
                 WebElement element = d.findElement(locator);
                 scrollToElement(locator);
                 element.click();
+                LogsManager.info("Clicked on element: " + locator);
                 return true;
             } catch (Exception e) {
                 return false;
@@ -39,6 +41,7 @@ public class ElementActions {
                 scrollToElement(locator);
                 element.clear();
                 element.sendKeys(text);
+                LogsManager.info("Typed '" + text + "' into element: " + locator);
                 return true;
             } catch (Exception e) {
                 return false;
@@ -51,6 +54,7 @@ public class ElementActions {
             try {
                 WebElement element = d.findElement(locator);
                 scrollToElement(locator);
+                LogsManager.info("Retrieved text: '" + element.getText() + "' from element: " + locator);
                 return element.getText().isEmpty() ? null : element.getText();
             } catch (Exception e) {
                 return null;
@@ -65,6 +69,7 @@ public class ElementActions {
                 WebElement element = d.findElement(locator);
                 scrollToElement(locator);
                 element.sendKeys(absolutePath);
+                LogsManager.info("Uploaded file: " + filePath + " into element: " + locator);
                 return true;
             } catch (Exception e) {
                 return false;

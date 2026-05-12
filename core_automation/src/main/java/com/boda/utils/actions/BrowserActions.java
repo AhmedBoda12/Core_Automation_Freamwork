@@ -3,6 +3,8 @@ package com.boda.utils.actions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 
+import com.boda.utils.logs.LogsManager;
+
 public class BrowserActions {
     private final WebDriver driver;
 
@@ -12,9 +14,11 @@ public class BrowserActions {
 
     public void navigateTo(String url) {
         driver.get(url);
+        LogsManager.info("Navigated to URL: " + url);
     }
 
     public String getCurrentUrl() {
+        LogsManager.info("Current URL: " + driver.getCurrentUrl());
         return driver.getCurrentUrl();
     }
 

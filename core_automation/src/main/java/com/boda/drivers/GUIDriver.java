@@ -1,6 +1,8 @@
 package com.boda.drivers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ThreadGuard;
+import com.boda.utils.dateReader.PropertyReader;
+import com.boda.utils.logs.LogsManager;
 
 
 public class GUIDriver {
@@ -11,6 +13,7 @@ public class GUIDriver {
 
     public GUIDriver() {
         Browser browserType = Browser.valueOf(browser.toUpperCase());
+        LogsManager.info("Initializing WebDriver for browser: " + browserType);
         AbstractDriver driverFactory = browserType.getDriverFactory();
         WebDriver driver = ThreadGuard.protect(driverFactory.createDriver());
         driverThreadLocal.set(driver);  
